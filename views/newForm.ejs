@@ -1,0 +1,118 @@
+<% layout('./layouts/boilerplate') -%>
+
+<div class="min-h-screen w-full px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <form id="propertyForm" class="space-y-6 bg-white p-8 rounded-lg shadow-lg" novalidate method="POST" action="/listings/new" enctype="multipart/form-data">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-8font-[Poppins] ">New Property</h2>
+            
+            <div class="space-y-2">
+                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" id="title" name="title" 
+                    placeholder="Beautiful villa in Bali"
+                    class="block w-full p-3 mt-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300 text-sm" 
+                    required>
+            </div>
+
+            <div class="space-y-2">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" name="description" rows="4"
+                    placeholder="A stunning 3-bedroom villa with private pool, surrounded by rice fields..."
+                    class="block w-full text-sm p-3 mt-2 border resize-none rounded-lg focus:outline-none focus:ring focus:border-blue-300" 
+                    required></textarea>
+            </div>
+
+            <div class="space-y-2">
+                <label for="image" class="block text-sm font-medium text-gray-700">Upload images</label>
+                <input type="file" id="image" name="img"
+                    class="block text-sm w-full p-3 mt-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" 
+                    required>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label for="price" class="block text-sm font-medium text-gray-700">Price per night</label>
+                    <input type="number" id="price" name="price" min="0"
+                        placeholder="299"
+                        class="block text-sm w-full p-3 mt-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" 
+                        required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" id="location" name="location"
+                        placeholder="Ubud, Bali, Indonesia"
+                        class="block text-sm w-full p-3 mt-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" 
+                        required>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                <input type="text" id="country" name="country"
+                    class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-sm focus:outline-none peer"
+                    required
+                    placeholder="India">
+            </div>
+
+            <button type="submit"
+                class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                Create Listing
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('propertyForm');
+    const inputs = form.querySelectorAll('input, textarea');
+
+    // Function to show validation warning
+    const showWarning = (input) => {
+        input.classList.add('border-red-500');
+        input.classList.add('ring-red-500');
+        input.classList.add('focus:border-red-500', 'focus:ring-red-500');
+    };
+
+    // Function to remove warning
+    const removeWarning = (input) => {
+        input.classList.remove('border-red-500');
+        input.classList.remove('ring-red-500');
+        input.classList.remove('focus:border-red-500', 'focus:ring-red-500');
+    };
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let hasErrors = false;
+
+        // Clear all previous warnings
+        inputs.forEach(input => removeWarning(input));
+
+        // Check each input
+        inputs.forEach(input => {
+            if (!input.value.trim()) {  // Check if field is empty
+                showWarning(input);
+                hasErrors = true;
+            } else if (input.type === 'url' && !input.validity.valid) {
+                showWarning(input);
+                hasErrors = true;
+            } else if (input.type === 'number' && (!input.validity.valid || Number(input.value) <= 0)) {
+                showWarning(input);
+                hasErrors = true;
+            }
+        });
+
+        if (!hasErrors) {
+            form.submit();
+        }
+    });
+
+    // Optional: Remove warning when user starts typing
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.value.trim()) {
+                removeWarning(input);
+            }
+        });
+    });
+</script>

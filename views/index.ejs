@@ -1,0 +1,302 @@
+<% layout('./layouts/boilerplate') -%>
+
+    <div class="container mx-auto px-4 py-4 min-h-[80vh]">
+
+        <!-- Category Filter -->
+        <div class="hidden md:flex items-center justify-between pb-8 overflow-x-auto scrollbar-hide">
+            <div class="flex items-center gap-8">
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-th text-2xl"></i>
+                    <span class="text-xs">Icons</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-mountain text-2xl"></i>
+                    <span class="text-xs">Amazing views</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-swimming-pool text-2xl"></i>
+                    <span class="text-xs">Amazing pools</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-warehouse text-2xl"></i>
+                    <span class="text-xs">Farms</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-mountain text-2xl"></i>
+                    <span class="text-xs">Caves</span>
+                </a>
+                <a href="#" class="flex flex-col items-center gap-2 hover:text-gray-800 transition min-w-[56px]">
+                    <i class="fas fa-home text-2xl"></i>
+                    <span class="text-xs">A-frames</span>
+                </a>
+                <!-- Add more categories as needed -->
+            </div>
+
+            <!-- Filter Button -->
+            <button id="filterBtn"
+                class="border rounded-xl px-4 py-2 flex items-center gap-2 hover:shadow-md transition">
+                <i class="fas fa-sliders-h"></i>
+                <span>Filters</span>
+            </button>
+        </div>
+
+        <!-- Filter Modal -->
+        <div id="filterModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+            <div
+                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl p-6 w-full max-w-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold">Filters</h2>
+                    <button id="closeFilterBtn" class="p-2 hover:bg-gray-100 rounded-full">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Filter Content -->
+                <div class="space-y-6">
+                    <!-- Price Range -->
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">Price range</h3>
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <label class="text-sm text-gray-600">Minimum</label>
+                                <div class="relative mt-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2">₹</span>
+                                    <input type="number" class="w-full pl-8 pr-4 py-2 border rounded-lg"
+                                        placeholder="0">
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <label class="text-sm text-gray-600">Maximum</label>
+                                <div class="relative mt-1">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2">₹</span>
+                                    <input type="number" class="w-full pl-8 pr-4 py-2 border rounded-lg"
+                                        placeholder="10000+">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Type -->
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">Type of place</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <button class="p-4 border rounded-lg hover:border-black transition text-left">
+                                <div class="font-medium">Entire place</div>
+                                <div class="text-sm text-gray-500">A place all to yourself</div>
+                            </button>
+                            <button class="p-4 border rounded-lg hover:border-black transition text-left">
+                                <div class="font-medium">Private room</div>
+                                <div class="text-sm text-gray-500">Your own room, shared spaces</div>
+                            </button>
+                            <button class="p-4 border rounded-lg hover:border-black transition text-left">
+                                <div class="font-medium">Shared room</div>
+                                <div class="text-sm text-gray-500">Shared space and rooms</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Rooms and beds -->
+                    <div>
+                        <h3 class="text-lg font-medium mb-4">Rooms and beds</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-sm text-gray-600">Bedrooms</label>
+                                <div class="flex gap-4 mt-2">
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">Any</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">1</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">2</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">3+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-sm text-gray-600">Beds</label>
+                                <div class="flex gap-4 mt-2">
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">Any</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">1</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">2</button>
+                                    <button
+                                        class="px-6 py-2 border rounded-full hover:border-black transition">3+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="flex justify-between items-center mt-8 pt-4 border-t">
+                    <button class="underline font-medium">Clear all</button>
+                    <button class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+                        Show places
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Header Section -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4 mt-6">
+            <div class="space-y-2 px-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 font-[Poppins]">
+                    <% if( currUser ){%>
+                        Welcome, <%= currUser.username %> 👋
+                            <% } else { %>
+                                Welcome, Guest!
+                                <% } %>
+                </h1>
+                <p class="text-gray-600 text-sm md:text-md">
+                    Discover unique stays and experiences
+                </p>
+            </div>
+
+            <!-- <button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white 
+                       rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all 
+                       duration-300 shadow-sm flex items-center gap-2 font-medium">
+            <i class="fa-solid fa-plus"></i>
+            Become a host
+        </button> -->
+        </div>
+
+        
+
+        <!-- Main Content Container -->
+        <div class="w-full mx-auto px-4 sm:px-6 py-8">
+            <!-- Grid Layout for Listings -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <% for (let listing of listings){ %>
+                    <a href="/listings/<%=listing._id%>"
+                        class="group bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                        <!-- Image Container with Carousel -->
+                        <div class="aspect-[16/12] overflow-hidden relative">
+                            <img src="<%=listing.img.url%>" alt="<%=listing.title%>"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                            <!-- Wishlist Button -->
+                            <button
+                                class="absolute top-4 right-4 p-2 rounded-full bg-white/70 hover:bg-white transition-colors">
+                                <i class="fa-regular fa-heart text-xl"></i>
+                            </button>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div class="p-5 space-y-4">
+                            <!-- Title and Rating -->
+                            <div class="flex justify-between items-start gap-2">
+                                <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 
+                                   transition-colors line-clamp-1">
+                                    <%=listing.title%>
+                                </h3>
+                                <div class="flex items-center gap-1 text-sm">
+                                    <i class="fa-solid fa-star text-yellow-400"></i>
+                                    <span class="font-medium">4.9</span>
+                                </div>
+                            </div>
+
+                            <!-- Location with Icon -->
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p class="text-sm">
+                                    <%=listing.location%>, <%=listing.country%>
+                                </p>
+                            </div>
+
+                            <!-- Additional Details -->
+                            <div class="flex items-center gap-4 text-gray-600 text-sm">
+                                <div class="flex items-center gap-1">
+                                    <i class="fa-solid fa-bed"></i>
+                                    <span>2 beds</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i class="fa-solid fa-bath"></i>
+                                    <span>1 bath</span>
+                                </div>
+                            </div>
+
+                            <!-- Price Section -->
+                            <div class="pt-3 border-t">
+                                <div class="flex items-baseline gap-1">
+                                    <p class="text-sm font-semibold text-gray-900">
+                                        ₹ <%=listing.price.toLocaleString('en-IN')%>
+                                            <span class="text-gray-600 font-normal">/month</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <% } %>
+            </div>
+
+            <!-- Optional: Add Pagination
+            <div class="mt-12 flex justify-center">
+                <nav class="flex items-center gap-2">
+                    <button class="p-2 rounded-lg border hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-4 py-2 rounded-lg border bg-blue-600 text-white">1</button>
+                    <button class="px-4 py-2 rounded-lg border hover:bg-gray-50 transition-colors">2</button>
+                    <button class="px-4 py-2 rounded-lg border hover:bg-gray-50 transition-colors">3</button>
+                    <button class="p-2 rounded-lg border hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div> -->
+
+        <style>
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
+            }
+
+            /* Optional: Add smooth scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+
+            /* Add hover effect for images */
+            .listing-card:hover img {
+                transform: scale(1.05);
+            }
+
+            /* Ensure consistent image heights */
+            /* .aspect-[16/12] {
+        aspect-ratio: 16/12;
+    } */
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const filterBtn = document.getElementById('filterBtn');
+                const filterModal = document.getElementById('filterModal');
+                const closeFilterBtn = document.getElementById('closeFilterBtn');
+
+                filterBtn.addEventListener('click', () => {
+                    filterModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                closeFilterBtn.addEventListener('click', () => {
+                    filterModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+
+                filterModal.addEventListener('click', (e) => {
+                    if (e.target === filterModal) {
+                        filterModal.classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        </script>

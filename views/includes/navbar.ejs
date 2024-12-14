@@ -1,0 +1,128 @@
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-2">
+                <a href="/listings" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <div class="text-blue-600 size-8">
+                        <!-- <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"
+                                fill="currentColor"></path>
+                        </svg> -->
+                        <img src="../../images/house.png" alt="">
+                    </div>
+                    <span class="text-gray-900 text-xl font-bold font-[Poppins]">Hommy</span>
+                </a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden lg:flex flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <input type="text" 
+                           placeholder="Search locations..." 
+                           class="w-full pl-12 pr-4 py-2.5 rounded-full bg-gray-100 border-none 
+                                  focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="flex items-center gap-4">
+                <!-- List Property Button -->
+                <!-- <a href="/listings/new" 
+                   class="hidden lg:flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white 
+                          rounded-full hover:bg-blue-700 transition-colors font-medium">
+                    <i class="fa-solid fa-plus"></i>
+                    List Property
+                </a> -->
+
+                <!-- User Menu -->
+                <div class="relative group">
+                    <button class="flex items-center gap-3 p-2 rounded-full hover:bg-gray-100 
+                                 transition-colors">
+                        <div class="flex items-center gap-2 text-gray-700">
+                            <i class="fa-solid fa-bars"></i>
+                        </div>
+                        <div class="size-9 rounded-full overflow-hidden border-2 border-gray-200">
+                            <img src="https://cdn.usegalileo.ai/stability/4a2e858c-9183-47d4-bbb8-edc234bc273c.png"
+                                 alt="Profile"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border 
+                                border-gray-200 opacity-0 invisible group-hover:opacity-100 
+                                group-hover:visible transition-all duration-200 z-10">
+                        <div class="p-2">
+                            <% if(currUser) {%>
+                                <a href="/profile" 
+                               class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100 
+                                      rounded-lg transition-colors">
+                                <i class="fa-regular fa-user"></i>
+                                Profile
+                            </a>
+                            <a href="/listings/new" 
+                               class="lg:hidden flex items-center gap-3 px-4 py-2 text-gray-700 
+                                      hover:bg-gray-100 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus"></i>
+                                List Property
+                            </a>
+                            <a href="/favorites" 
+                               class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100 
+                                      rounded-lg transition-colors">
+                                <i class="fa-regular fa-heart"></i>
+                                Favorites
+                            </a>
+                            <a href="/settings" 
+                               class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100 
+                                      rounded-lg transition-colors">
+                                <i class="fa-solid fa-gear"></i>
+                                Settings
+                            </a>
+                            <%}%>
+                            <% if(!currUser) {%>
+                                <a href="/signUp" 
+                                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100 
+                                       rounded-lg transition-colors">
+                                 <i class="fa-solid fa-gear"></i>
+                                 Sign Up
+                             </a>
+                                <a href="/login" 
+                                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100 
+                                       rounded-lg transition-colors">
+                                 <i class="fa-solid fa-gear"></i>
+                                  Login
+                             </a>
+                            <%}%>
+                        </div>
+                        <% if( currUser ) {%>
+                            <div class="border-t border-gray-200 p-2">
+                                <button class="flex items-center gap-3 px-4 py-2 text-red-600 hover:bg-red-50 
+                                             w-full rounded-lg transition-colors">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <a href="/logout">Logout</a>
+                                </button>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Search (shows below navbar on mobile) -->
+    <div class="lg:hidden p-4 border-t border-gray-200">
+        <div class="relative">
+            <input type="text" 
+                   placeholder="Search locations..." 
+                   class="w-full pl-12 pr-4 py-2.5 rounded-full bg-gray-100 border-none 
+                          focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all">
+            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div>
+</header>
